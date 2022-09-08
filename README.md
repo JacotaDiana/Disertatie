@@ -1,7 +1,12 @@
-# Disertatie
+# Traffic Light Simulator
+
+**The Map** will contain the following elements:
+- Entrances: this element will generate cars with a given frequency;
+- Traffic Light: the entity which will allow or stop the car to pass through the intersection;
+- Exit: the final destination of the car. This is randomly generated when the car is created;
+- Road: the segment which connects the other elements of the system.
+
+<img src="https://user-images.githubusercontent.com/63298887/189131844-95ceffed-31ed-4cdb-aeb5-20d705833e9e.png" width="700" height="400">
 
 
-<img src="https://user-images.githubusercontent.com/63298887/189080504-c32b3cec-bb6a-4a77-aa51-fb6c7c5349b9.png" width="600" height="400">
-
-<img src="https://user-images.githubusercontent.com/63298887/189081526-0bb2609b-7a5e-464c-a1c9-a598a4418f82.png" width="400" height="600">
 
