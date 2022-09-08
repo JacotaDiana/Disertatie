@@ -28,14 +28,15 @@ namespace Disertatie
             return millisecondsInOneMinute / noOfCarsPerMinute;
         }
 
+        //todo: refactor this. Find a better place to add the car to the environment
         public void generateCar()
         {
             for(int i = 0; i < totalNoOfCars; i++)
             {
-                String destination = getRandomDestination();
-                CarAgent carAgent = new CarAgent(entranceId.ToString(), destination);
+                String finalDestination = getRandomDestination();
+                CarAgent carAgent = new CarAgent(entranceId.ToString(), (entranceId + 4).ToString(), finalDestination, new Position(entranceId, 0));
                 environmentMas.Add(carAgent, "Car_" + entranceId + "_" + i);
-                Console.WriteLine("generateCar --> " + carAgent.ToString() + " time: " + DateTime.Now.ToString("h:mm:ss tt"));
+                printToConsole(carAgent);
                 Thread.Sleep(frequency);
             }
         }
@@ -43,6 +44,11 @@ namespace Disertatie
         private String getRandomDestination()
         {
             return random.Next(4).ToString();
+        }
+
+        private void printToConsole(CarAgent carAgent)
+        {
+            Console.WriteLine("generateCar --> " + carAgent.Name + " time: " + DateTime.Now.ToString("h:mm:ss tt"));
         }
     }
 }

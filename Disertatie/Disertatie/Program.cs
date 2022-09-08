@@ -13,7 +13,67 @@ namespace Disertatie
         {
             TrafficEnvironment trafficEnvironment = new TrafficEnvironment();
 
-            generateCars(trafficEnvironment);        
+            generateTrafficLights(trafficEnvironment);
+            generateRoads(trafficEnvironment);
+            generateCars(trafficEnvironment);
+        }
+
+        private static void generateTrafficLights(TrafficEnvironment environment)
+        {
+            //todo add also the upper road?
+            Boolean isSimpleTrafficLight = true;
+            TrafficLightFactory trafficLightFactory = new TrafficLightFactory(isSimpleTrafficLight);
+            for(int i = 4; i < 20; i++)
+            {
+                TrafficLightAgent trafficLightAgent = trafficLightFactory.getTrafficLight(i);
+                environment.addTrafficLight(trafficLightAgent);
+            }
+        }
+
+        private static void generateRoads(TrafficEnvironment trafficEnvironment)
+        {
+            List<TrafficLightAgent> trafficLightAgents = trafficEnvironment.getTrafficLightAgents();
+
+            foreach(var trafficLightAgent in trafficLightAgents)
+            {
+                List<Road> roads = new List<Road>();
+                int trafficLightId = trafficLightAgent.getId();
+                if (trafficLightAgent.isOnTheLeftSide())
+                {
+                    roads.Add(generateVerticalRoad(trafficLightId));
+                    roads.Add(generateRightRoad(trafficLightId));
+                    trafficLightAgent.setRoads(roads);
+                    continue;
+                }
+
+                if (trafficLightAgent.isOnTheRightSide())
+                {
+                    roads.Add(generateVerticalRoad(trafficLightId));
+                    roads.Add(generateLeftRoad(trafficLightId));
+                    trafficLightAgent.setRoads(roads);
+                    continue;
+                }
+
+                roads.Add(generateVerticalRoad(trafficLightId));
+                roads.Add(generateRightRoad(trafficLightId));
+                roads.Add(generateLeftRoad(trafficLightId));
+
+                trafficLightAgent.setRoads(roads);
+            }
+        }
+        private static Road generateVerticalRoad(int trafficLightId)
+        {
+            return new Road(trafficLightId - 4, trafficLightId, Direction.DOWN);
+        }
+
+        private static Road generateRightRoad(int trafficLightId)
+        {
+            return new Road(trafficLightId + 1, trafficLightId, Direction.RIGHT);
+        }
+
+        private static Road generateLeftRoad(int trafficLightId)
+        {
+            return new Road(trafficLightId - 1, trafficLightId, Direction.LEFT);
         }
 
         private static void generateCars(EnvironmentMas environment)
