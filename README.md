@@ -8,5 +8,6 @@
 
 <img src="https://user-images.githubusercontent.com/63298887/189131844-95ceffed-31ed-4cdb-aeb5-20d705833e9e.png" width="700" height="400">
 
-
+ **Sequence diagram**
+![image](https://user-images.githubusercontent.com/63298887/189140489-00c59ff1-7887-454a-b42a-745f3fcf2844.png)
 
